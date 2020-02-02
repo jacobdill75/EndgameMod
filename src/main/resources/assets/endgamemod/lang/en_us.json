@@ -1,0 +1,20 @@
+{
+	"item.endgamemod.ruby_item": "Ruby",
+	
+	"block.endgamemod.ruby_block": "Ruby Block",
+	"block.endgamemod.end_soil": "End Soil",
+	
+	"item.endgamemod.obsidian_ingot": "Obsidian Ingot",
+	"item.endgamemod.obsidian_pickaxe": "Obsidian Pickaxe",
+	"item.endgamemod.obsidian_axe": "Obsidian Axe",
+	"item.endgamemod.obsidian_shovel": "Obsidian Shovel",
+	"item.endgamemod.obsidian_hoe": "Obsidian Hoe",
+	"item.endgamemod.obsidian_sword": "Obsidian Sword",
+	
+	"item.endgamemod.example_entity_egg": "Example Entity Egg",
+	"item.endgamemod.example_entity": "Example Entity",
+	
+	"entity.endgamemod.example_entity": "Example Entity",
+	
+	"itemGroup.endgamemod": "Example Mod"
+}

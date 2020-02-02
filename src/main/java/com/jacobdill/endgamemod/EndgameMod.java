@@ -1,9 +1,17 @@
-package com.example.examplemod;
+package com.jacobdill.endgamemod;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.material.Material;
+import net.minecraft.entity.EntityType;
+import net.minecraft.item.AxeItem;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.HoeItem;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.world.WorldType;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
@@ -16,16 +24,35 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.jacobdill.endgamemod.init.EndgameBlocks;
+import com.jacobdill.endgamemod.world.biomes.ExampleBiome;
+import com.jacobdill.endgamemod.init.EndgameEntities;
+import com.jacobdill.endgamemod.init.EndgameToolMaterials;
+import com.jacobdill.endgamemod.world.ExampleWorldType;
+import com.jacobdill.endgamemod.init.EndgameBiomes;
+import com.jacobdill.endgamemod.init.EndgameItems;
+import com.jacobdill.endgamemod.renders.ExampleRenderRegistry;
+
 import java.util.stream.Collectors;
 
 // The value here should match an entry in the META-INF/mods.toml file
-@Mod("examplemod")
-public class ExampleMod
+@Mod("endgamemod")
+public class EndgameMod
 {
     // Directly reference a log4j logger.
-    private static final Logger LOGGER = LogManager.getLogger();
+    public static final Logger LOGGER = LogManager.getLogger();
+    
+    public static final ItemGroup endgameItemGroup = new EndgameItemGroup();
+    public static final WorldType ENDGAME_TYPE = new ExampleWorldType();
+    
+    //modid 
+    public static final String modid = "endgamemod";
+    
+    private static final String name = "Endgame Mod";
+    
+    private static final String version = "1.0";
 
-    public ExampleMod() {
+    public EndgameMod() {
         // Register the setup method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         // Register the enqueueIMC method for modloading
@@ -48,37 +75,29 @@ public class ExampleMod
 
     private void doClientStuff(final FMLClientSetupEvent event) {
         // do something that can only be done on the client
-        LOGGER.info("Got game settings {}", event.getMinecraftSupplier().get().gameSettings);
+    	
+    	ExampleRenderRegistry.registryEntityrenders();
+    	
+        //LOGGER.info("Got game settings {}", event.getMinecraftSupplier().get().gameSettings);
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event)
     {
         // some example code to dispatch IMC to another mod
-        InterModComms.sendTo("examplemod", "helloworld", () -> { LOGGER.info("Hello world from the MDK"); return "Hello world";});
+        InterModComms.sendTo("endgamemod", "helloworld", () -> { LOGGER.info("Hello world from the MDK"); return "Hello world";});
     }
 
     private void processIMC(final InterModProcessEvent event)
     {
         // some example code to receive and process InterModComms from other mods
-        LOGGER.info("Got IMC {}", event.getIMCStream().
+        /*LOGGER.info("Got IMC {}", event.getIMCStream().
                 map(m->m.getMessageSupplier().get()).
-                collect(Collectors.toList()));
+                collect(Collectors.toList()));*/
     }
     // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
     public void onServerStarting(FMLServerStartingEvent event) {
         // do something when the server starts
-        LOGGER.info("HELLO from server starting");
-    }
-
-    // You can use EventBusSubscriber to automatically subscribe events on the contained class (this is subscribing to the MOD
-    // Event bus for receiving Registry Events)
-    @Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
-    public static class RegistryEvents {
-        @SubscribeEvent
-        public static void onBlocksRegistry(final RegistryEvent.Register<Block> blockRegistryEvent) {
-            // register a new block here
-            LOGGER.info("HELLO from Register Block");
-        }
+        //LOGGER.info("HELLO from server starting");
     }
 }
