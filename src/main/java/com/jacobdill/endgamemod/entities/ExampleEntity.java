@@ -1,13 +1,21 @@
 package com.jacobdill.endgamemod.entities;
 
+import com.jacobdill.endgamemod.util.handlers.SoundsHandler;
+
 import net.minecraft.entity.AgeableEntity;
-import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.RandomWalkingGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.passive.CowEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.particles.ParticleTypes;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.Direction;
+import net.minecraft.util.IndirectEntityDamageSource;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class ExampleEntity extends CowEntity{ //CreatureEntity
@@ -21,6 +29,19 @@ public class ExampleEntity extends CowEntity{ //CreatureEntity
 		super(type, worldIn);
 	}
 		
+	@Override
+	public void livingTick() {
+		if (this.world.isRemote) {
+	         for(int i = 0; i < 2; ++i) {
+	            this.world.addParticle(ParticleTypes.PORTAL, this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.getWidth(), this.posY + this.rand.nextDouble() * (double)this.getHeight() - 0.25D, this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.getWidth(), (this.rand.nextDouble() - 0.5D) * 2.0D, -this.rand.nextDouble(), (this.rand.nextDouble() - 0.5D) * 2.0D);
+	         }
+	      }
+		super.livingTick();
+		if(this.rand.nextInt(240) == 10)
+			this.teleportRandomly(0.25D);
+		
+	}
+	
 	@Override
 	protected void registerGoals(){
 		this.goalSelector.addGoal(0,(new SwimGoal(this)));
@@ -41,4 +62,69 @@ public class ExampleEntity extends CowEntity{ //CreatureEntity
 		return new ExampleEntity((EntityType<? extends CowEntity>)super.getType(), super.world);
 	}
 	
+	@Override
+	protected SoundEvent getAmbientSound() {
+		return SoundsHandler.ENTITY_EXAMPLE_MOO;
+	}
+	
+	@Override
+	protected SoundEvent getHurtSound(DamageSource source) {
+		return SoundsHandler.ENTITY_EXAMPLE_HURT;
+	}
+	
+	@Override
+	protected SoundEvent getDeathSound() {
+		return SoundsHandler.ENTITY_EXAMPLE_DEATH;
+	}
+	
+	protected boolean teleportRandomly(double scale) {
+	      double d0 = this.posX + scale * (this.rand.nextDouble() - 0.5D) * 64.0D;
+	      double d1 = this.posY + scale * (double)(this.rand.nextInt(64) - 32);
+	      double d2 = this.posZ + scale * (this.rand.nextDouble() - 0.5D) * 64.0D;
+	      return this.teleportTo(d0, d1, d2);
+	   }
+	
+	private boolean teleportTo(double x, double y, double z) {
+	      BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos(x, y, z);
+
+	      while(blockpos$mutableblockpos.getY() > 0 && !this.world.getBlockState(blockpos$mutableblockpos).getMaterial().blocksMovement()) {
+	         blockpos$mutableblockpos.move(Direction.DOWN);
+	      }
+
+	      if (!this.world.getBlockState(blockpos$mutableblockpos).getMaterial().blocksMovement()) {
+	         return false;
+	      } else {
+	         net.minecraftforge.event.entity.living.EnderTeleportEvent event = new net.minecraftforge.event.entity.living.EnderTeleportEvent(this, x, y, z, 0);
+	         if (net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(event)) return false;
+	         boolean flag = this.attemptTeleport(event.getTargetX(), event.getTargetY(), event.getTargetZ(), true);
+	         if (flag) {
+	            this.world.playSound((PlayerEntity)null, this.prevPosX, this.prevPosY, this.prevPosZ, SoundEvents.ENTITY_ENDERMAN_TELEPORT, this.getSoundCategory(), 1.0F, 1.0F);
+	            this.playSound(SoundEvents.ENTITY_ENDERMAN_TELEPORT, 1.0F, 1.0F);
+	         }
+
+	         return flag;
+	      }
+	   }
+	
+	@Override
+	public boolean attackEntityFrom(DamageSource source, float amount) {
+		if (this.isInvulnerableTo(source)) {
+	         return false;
+	      } else if (!(source instanceof IndirectEntityDamageSource) && source != DamageSource.FIREWORKS) {
+	         boolean flag = super.attackEntityFrom(source, amount);
+	         if (this.getHealth() > 0) {
+	            this.teleportRandomly(1D);
+	         }
+
+	         return flag;
+	      } else {
+	         for(int i = 0; i < 64; ++i) {
+	            if (this.teleportRandomly(1D)) {
+	               return true;
+	            }
+	         }
+
+	         return false;
+	      }
+	}
 }

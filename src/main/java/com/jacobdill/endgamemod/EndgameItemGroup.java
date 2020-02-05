@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 public class EndgameItemGroup extends ItemGroup{
 
 	public EndgameItemGroup() {
-		super("examplemod");
+		super("endgamemod");
 	}
 
 	@Override

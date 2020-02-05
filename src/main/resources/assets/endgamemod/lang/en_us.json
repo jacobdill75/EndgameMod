@@ -12,9 +12,10 @@
 	"item.endgamemod.obsidian_sword": "Obsidian Sword",
 	
 	"item.endgamemod.example_entity_egg": "Example Entity Egg",
-	"item.endgamemod.example_entity": "Example Entity",
 	
 	"entity.endgamemod.example_entity": "Example Entity",
 	
-	"itemGroup.endgamemod": "Example Mod"
+	"itemGroup.endgamemod": "Endgame Mod",
+	
+	"generator.endgamemod": "Endgame World"
 }

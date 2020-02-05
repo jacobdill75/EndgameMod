@@ -8,7 +8,7 @@
 			[
 				{
 					"type": "minecraft:item",
-					"name": "examplemod:end_soil"
+					"name": "endgamemod:end_soil"
 				}
 			]
 		}

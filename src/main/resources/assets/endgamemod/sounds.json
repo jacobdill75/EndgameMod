@@ -1,0 +1,20 @@
+{
+	"entity.example.moo":
+	{
+		"category": "entity",
+		"subtitle": "entity.example.moo",
+		"sounds": [{"name": "endgamemod:entity/example/moo", "stream": true}]
+	},
+	"entity.example.hurt":
+	{
+		"category": "entity",
+		"subtitle": "entity.example.hurt",
+		"sounds": [{"name": "endgamemod:entity/example/hurt", "stream": true}]
+	},
+	"entity.example.death":
+	{
+		"category": "entity",
+		"subtitle": "entity.example.death",
+		"sounds": [{"name": "endgamemod:entity/example/death", "stream": true}]
+	}
+}

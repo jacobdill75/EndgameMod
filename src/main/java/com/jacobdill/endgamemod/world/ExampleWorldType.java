@@ -13,7 +13,7 @@ import net.minecraft.world.gen.EndGenerationSettings;
 public class ExampleWorldType extends WorldType{
 
 	public ExampleWorldType() {
-		super("ExampleType");
+		super("endgamemod");
 	}
 	
 	@Override

@@ -7,6 +7,8 @@ import com.jacobdill.endgamemod.init.EndgameBlocks;
 import com.jacobdill.endgamemod.init.EndgameEntities;
 import com.jacobdill.endgamemod.init.EndgameItems;
 import com.jacobdill.endgamemod.init.EndgameToolMaterials;
+import com.jacobdill.endgamemod.util.handlers.SoundsHandler;
+//import com.jacobdill.endgamemod.util.handlers.SoundsHandler;
 import com.jacobdill.endgamemod.world.biomes.ExampleBiome;
 
 import net.minecraft.block.Block;
@@ -22,6 +24,7 @@ import net.minecraft.item.PickaxeItem;
 import net.minecraft.item.ShovelItem;
 import net.minecraft.item.SwordItem;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -91,6 +94,16 @@ public abstract class EndgameRegistryEvents {
 		
 		EndgameBiomes.registerBiomes();
 	}
+	
+	@SubscribeEvent
+    public void registerSoundEvents(RegistryEvent.Register<SoundEvent> event) {
+       event.getRegistry().registerAll(
+    		   SoundsHandler.ENTITY_EXAMPLE_MOO,
+    		   SoundsHandler.ENTITY_EXAMPLE_HURT,
+    		   SoundsHandler.ENTITY_EXAMPLE_DEATH
+       );
+    } 
+	
 	/*
 	//@OnlyIn(Dist.DEDICATED_SERVER)
 	@SubscribeEvent
@@ -108,15 +121,6 @@ public abstract class EndgameRegistryEvents {
 		
 	}
 	*/
-	
-	/*@SubscribeEvent
-	public static void onLootTableRegistry(RegistryEvent.Register<?> lootTableEvent) {
-		register(location(modid, "example_entity"));
-		lootTableEvent.getRegistry().registerAll(
-				
-		);
-		
-	}*/
 	
 	public static ResourceLocation location(String name) {
     	return new ResourceLocation(EndgameMod.modid, name);

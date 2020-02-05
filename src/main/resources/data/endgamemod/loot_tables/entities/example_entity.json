@@ -24,9 +24,9 @@
 							}
 						}
 					],
-					"name": "examplemod:ruby_item",
+					"name": "endgamemod:ruby_item",
 					"expand": true,
-					"weight": 96
+					"weight": 100
 				},
 				
 				{
@@ -49,8 +49,8 @@
 						}
 					],
 					
-					"name": "examplemod:obsidian_sword",
-					"weight": 4
+					"name": "endgamemod:obsidian_sword",
+					"weight": 2
 				}
 			]
 		}

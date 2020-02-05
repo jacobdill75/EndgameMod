@@ -8,7 +8,7 @@
 			[
 				{
 					"type": "minecraft:item",
-					"name": "examplemod:ruby_block"
+					"name": "endgamemod:ruby_block"
 				}
 			]
 		}
