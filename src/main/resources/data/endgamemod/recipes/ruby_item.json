@@ -1,0 +1,15 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern":
+	[
+		"B"
+	],
+	
+	"key":
+	{
+		"B": {"item": "endgamemod:ruby_block"}
+	},
+	
+	"result": {"item": "endgamemod:ruby_item"},
+	"count": 9
+}

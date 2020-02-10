@@ -11,10 +11,16 @@
 		"subtitle": "entity.example.hurt",
 		"sounds": [{"name": "endgamemod:entity/example/hurt", "stream": true}]
 	},
-	"entity.example.death":
+	"entity.example.death1":
 	{
 		"category": "entity",
-		"subtitle": "entity.example.death",
-		"sounds": [{"name": "endgamemod:entity/example/death", "stream": true}]
+		"subtitle": "entity.example.death1",
+		"sounds": [{"name": "endgamemod:entity/example/death1", "stream": true}]
+	},
+	"entity.example.death2":
+	{
+		"category": "entity",
+		"subtitle": "entity.example.death2",
+		"sounds": [{"name": "endgamemod:entity/example/death2", "stream": true}]
 	}
 }

@@ -1,5 +1,6 @@
 {
 	"item.endgamemod.ruby_item": "Ruby",
+	"item.endgamemod.hyde": "Hyde",
 	
 	"block.endgamemod.ruby_block": "Ruby Block",
 	"block.endgamemod.end_soil": "End Soil",
@@ -13,7 +14,7 @@
 	
 	"item.endgamemod.example_entity_egg": "Example Entity Egg",
 	
-	"entity.endgamemod.example_entity": "Example Entity",
+	"entity.endgamemod.example_entity": "Buoc'h/Auroch/Taurus/Jekyll/Chatal/Kof-gar",
 	
 	"itemGroup.endgamemod": "Endgame Mod",
 	

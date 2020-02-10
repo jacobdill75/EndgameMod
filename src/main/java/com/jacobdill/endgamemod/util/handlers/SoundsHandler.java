@@ -11,7 +11,8 @@ public class SoundsHandler {
 
 	public static SoundEvent ENTITY_EXAMPLE_MOO = SoundsHandler.initSound("entity.example.moo"),
 							 ENTITY_EXAMPLE_HURT = SoundsHandler.initSound("entity.example.hurt"),
-							 ENTITY_EXAMPLE_DEATH = SoundsHandler.initSound("entity.example.death");
+							 ENTITY_EXAMPLE_DEATH1 = SoundsHandler.initSound("entity.example.death1"),
+							 ENTITY_EXAMPLE_DEATH2 = SoundsHandler.initSound("entity.example.death2");
 	
 	public static SoundEvent initSound(String name) {
 		ResourceLocation location = new ResourceLocation(EndgameMod.modid, name);

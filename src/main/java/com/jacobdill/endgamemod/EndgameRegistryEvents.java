@@ -23,6 +23,7 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.PickaxeItem;
 import net.minecraft.item.ShovelItem;
 import net.minecraft.item.SwordItem;
+import net.minecraft.item.Item.Properties;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.biome.Biome;
@@ -44,9 +45,10 @@ public abstract class EndgameRegistryEvents {
 		
 		itemRegistryEvent.getRegistry().registerAll(
 				
-				EndgameItems.RUBY = new Item(new Item.Properties().group(ItemGroup.MISC)).setRegistryName(location("ruby_item")),
+				EndgameItems.RUBY = new Item(new Item.Properties().group(ItemGroup.MISC).group(endgameItemGroup)).setRegistryName(location("ruby_item")),
 	    		EndgameItems.RUBY_BLOCK = new BlockItem(EndgameBlocks.RUBY_BLOCK, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS).group(endgameItemGroup)).setRegistryName(EndgameBlocks.RUBY_BLOCK.getRegistryName()),
 	    		EndgameItems.END_SOIL = new BlockItem(EndgameBlocks.END_SOIL, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS).group(endgameItemGroup)).setRegistryName(EndgameBlocks.END_SOIL.getRegistryName()),
+	    		EndgameItems.HYDE = new Item(new Item.Properties().group(ItemGroup.MISC).group(endgameItemGroup)).setRegistryName(location("hyde")),
 	   
 	    		EndgameItems.OBSIDIAN_INGOT = new Item(new Item.Properties().group(ItemGroup.MISC)).setRegistryName(location("obsidian_ingot")),
 	    		EndgameItems.OBSIDIAN_SWORD = new SwordItem(EndgameToolMaterials.obsidian, 0, 6.0f, new Item.Properties().group(ItemGroup.COMBAT).group(endgameItemGroup)).setRegistryName(location("obsidian_sword")),
@@ -100,7 +102,8 @@ public abstract class EndgameRegistryEvents {
        event.getRegistry().registerAll(
     		   SoundsHandler.ENTITY_EXAMPLE_MOO,
     		   SoundsHandler.ENTITY_EXAMPLE_HURT,
-    		   SoundsHandler.ENTITY_EXAMPLE_DEATH
+    		   SoundsHandler.ENTITY_EXAMPLE_DEATH1,
+    		   SoundsHandler.ENTITY_EXAMPLE_DEATH2
        );
     } 
 	

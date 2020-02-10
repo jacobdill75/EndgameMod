@@ -2,9 +2,13 @@ package com.jacobdill.endgamemod.entities;
 
 import com.jacobdill.endgamemod.util.handlers.SoundsHandler;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
+import net.minecraft.entity.ai.goal.PanicGoal;
 import net.minecraft.entity.ai.goal.RandomWalkingGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.passive.CowEntity;
@@ -41,20 +45,22 @@ public class ExampleEntity extends CowEntity{ //CreatureEntity
 			this.teleportRandomly(0.25D);
 		
 	}
-	
+	/*
 	@Override
 	protected void registerGoals(){
 		this.goalSelector.addGoal(0,(new SwimGoal(this)));
-		this.goalSelector.addGoal(1, new RandomWalkingGoal(this, 1.2d));
-		this.goalSelector.addGoal(2, new LookRandomlyGoal(this));
-	}
-	/*
+		this.goalSelector.addGoal(1, new PanicGoal(this, 1D));
+		this.goalSelector.addGoal(2, new RandomWalkingGoal(this, 1.2d));
+		this.goalSelector.addGoal(3, new LookRandomlyGoal(this));
+		
+	}*/
+	
 	@Override
 	protected void registerAttributes() {
 		super.registerAttributes();
-		//this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0d);
+		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(30.0D);
 		//this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.8d);
-	}*/
+	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
@@ -74,7 +80,7 @@ public class ExampleEntity extends CowEntity{ //CreatureEntity
 	
 	@Override
 	protected SoundEvent getDeathSound() {
-		return SoundsHandler.ENTITY_EXAMPLE_DEATH;
+		return this.rand.nextInt(10) < 5 ? SoundsHandler.ENTITY_EXAMPLE_DEATH1 : SoundsHandler.ENTITY_EXAMPLE_DEATH2;
 	}
 	
 	protected boolean teleportRandomly(double scale) {
@@ -101,30 +107,28 @@ public class ExampleEntity extends CowEntity{ //CreatureEntity
 	            this.world.playSound((PlayerEntity)null, this.prevPosX, this.prevPosY, this.prevPosZ, SoundEvents.ENTITY_ENDERMAN_TELEPORT, this.getSoundCategory(), 1.0F, 1.0F);
 	            this.playSound(SoundEvents.ENTITY_ENDERMAN_TELEPORT, 1.0F, 1.0F);
 	         }
-
 	         return flag;
 	      }
 	   }
 	
 	@Override
 	public boolean attackEntityFrom(DamageSource source, float amount) {
-		if (this.isInvulnerableTo(source)) {
+		
+		if (this.isInvulnerableTo(source))
 	         return false;
-	      } else if (!(source instanceof IndirectEntityDamageSource) && source != DamageSource.FIREWORKS) {
-	         boolean flag = super.attackEntityFrom(source, amount);
-	         if (this.getHealth() > 0) {
-	            this.teleportRandomly(1D);
-	         }
-
-	         return flag;
-	      } else {
-	         for(int i = 0; i < 64; ++i) {
-	            if (this.teleportRandomly(1D)) {
+		
+		boolean flag = false;
+		if (!(source instanceof IndirectEntityDamageSource) && source != DamageSource.FIREWORKS)
+	         flag = super.attackEntityFrom(source, amount);
+	         
+	    if (this.getHealth() - amount > 0) {
+	    	if(source.getTrueSource() instanceof ClientPlayerEntity) ((ClientPlayerEntity)source.getTrueSource()).sendChatMessage("Teleport");
+	    	for(int i = 0; i < 64; ++i) {
+	            if (this.teleportRandomly(0.5D)) {
 	               return true;
 	            }
-	         }
-
-	         return false;
-	      }
+	    	}
+	    }
+	    return flag;
 	}
 }

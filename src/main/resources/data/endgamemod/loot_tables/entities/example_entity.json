@@ -3,12 +3,8 @@
 	"pools":
 	[
 		{
-			"rolls":
-			{
-				"min": 1,
-				"max": 4
-			},
-			"bonus_rolls": 2,
+			"rolls": 1,
+			"bonus rolls": 1,
 			"entries":
 			[
 				{
@@ -17,16 +13,12 @@
 					[
 						{
 							"function": "minecraft:set_count",
-							"count":
-							{
-								"min": 1,
-								"max": 5
-							}
+							"count": 1
 						}
 					],
-					"name": "endgamemod:ruby_item",
+					"name": "endgamemod:hyde",
 					"expand": true,
-					"weight": 100
+					"weight": 96
 				},
 				
 				{
@@ -40,17 +32,17 @@
 						
 						{
 							"function": "minecraft:set_nbt",
-							"tag": "{Enchantments:[{id:sharpness,lvl:1000}]}"
+							"tag": "{Enchantments:[{id:sharpness,lvl:10}]}"
 						},
 						
 						{
 							"function": "minecraft:set_name",
-							"name": "The Sword Of Justice"
+							"name": "L'Edecael"
 						}
 					],
 					
 					"name": "endgamemod:obsidian_sword",
-					"weight": 2
+					"weight": 4
 				}
 			]
 		}
