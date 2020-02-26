@@ -1,0 +1,9 @@
+{
+	"parent": "block/orientable",
+	"textures": {
+		"top": "endgamemod:block/purpureus_top",
+		"front": "endgamemod:block/purpureus_side",
+		"side": "endgamemod:block/purpureus_side",
+		"bottom": "endgamemod:block/end_soil"
+	}
+}

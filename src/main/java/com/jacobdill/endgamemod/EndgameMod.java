@@ -1,14 +1,5 @@
 package com.jacobdill.endgamemod;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
-import net.minecraft.entity.EntityType;
-import net.minecraft.item.AxeItem;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.HoeItem;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.world.WorldType;
 import net.minecraftforge.common.MinecraftForge;
@@ -70,7 +61,6 @@ public class EndgameMod
     {
         // some preinit code
         LOGGER.info("HELLO FROM PREINIT");
-        LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {

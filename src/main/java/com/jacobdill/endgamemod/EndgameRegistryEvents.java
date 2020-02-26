@@ -7,11 +7,13 @@ import com.jacobdill.endgamemod.init.EndgameBlocks;
 import com.jacobdill.endgamemod.init.EndgameEntities;
 import com.jacobdill.endgamemod.init.EndgameItems;
 import com.jacobdill.endgamemod.init.EndgameToolMaterials;
+import com.jacobdill.endgamemod.util.handlers.AnvilHandler;
 import com.jacobdill.endgamemod.util.handlers.SoundsHandler;
 //import com.jacobdill.endgamemod.util.handlers.SoundsHandler;
 import com.jacobdill.endgamemod.world.biomes.ExampleBiome;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.GrassBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityType;
@@ -39,6 +41,10 @@ public abstract class EndgameRegistryEvents {
 	public static final Logger LOGGER = EndgameMod.LOGGER;
 	public static final ItemGroup endgameItemGroup = EndgameMod.endgameItemGroup;
 	
+	static {
+		new AnvilHandler();
+	}
+	
 	@SubscribeEvent
     public static void onItemRegistry(final RegistryEvent.Register<Item> itemRegistryEvent) {
         // register a new item here
@@ -48,6 +54,7 @@ public abstract class EndgameRegistryEvents {
 				EndgameItems.RUBY = new Item(new Item.Properties().group(ItemGroup.MISC).group(endgameItemGroup)).setRegistryName(location("ruby_item")),
 	    		EndgameItems.RUBY_BLOCK = new BlockItem(EndgameBlocks.RUBY_BLOCK, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS).group(endgameItemGroup)).setRegistryName(EndgameBlocks.RUBY_BLOCK.getRegistryName()),
 	    		EndgameItems.END_SOIL = new BlockItem(EndgameBlocks.END_SOIL, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS).group(endgameItemGroup)).setRegistryName(EndgameBlocks.END_SOIL.getRegistryName()),
+	    		EndgameItems.PURPUREUS = new BlockItem(EndgameBlocks.PURPUREUS, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS).group(endgameItemGroup)).setRegistryName(EndgameBlocks.PURPUREUS.getRegistryName()),
 	    		EndgameItems.HYDE = new Item(new Item.Properties().group(ItemGroup.MISC).group(endgameItemGroup)).setRegistryName(location("hyde")),
 	   
 	    		EndgameItems.OBSIDIAN_INGOT = new Item(new Item.Properties().group(ItemGroup.MISC)).setRegistryName(location("obsidian_ingot")),
@@ -61,8 +68,6 @@ public abstract class EndgameRegistryEvents {
 		);
 		
 		EndgameEntities.registryEntitySpawnEggs(itemRegistryEvent);
-		
-        LOGGER.info("HELLO from Register Item");
     }
 	
 	@SubscribeEvent
@@ -72,11 +77,11 @@ public abstract class EndgameRegistryEvents {
 		blockRegistryEvent.getRegistry().registerAll(
 				
 				EndgameBlocks.RUBY_BLOCK = new Block(Block.Properties.create(Material.IRON).hardnessAndResistance(5f, 30f).lightValue(0).sound(SoundType.METAL)).setRegistryName(location("ruby_block")),
-				EndgameBlocks.END_SOIL = new Block(Block.Properties.create(Material.EARTH).hardnessAndResistance(0.5f, 2.5f).lightValue(0).sound(SoundType.GROUND)).setRegistryName(location("end_soil"))   
+				EndgameBlocks.END_SOIL = new Block(Block.Properties.create(Material.EARTH).hardnessAndResistance(0.5f, 2.5f).lightValue(0).sound(SoundType.GROUND)).setRegistryName(location("end_soil")),
+				EndgameBlocks.PURPUREUS = new GrassBlock(Block.Properties.create(Material.ORGANIC).tickRandomly().hardnessAndResistance(4.0F).sound(SoundType.PLANT)).setRegistryName("purpureus")
 				
 		);
 		
-        LOGGER.info("HELLO from Register Block");
     }
 	
 	@SubscribeEvent
@@ -105,7 +110,7 @@ public abstract class EndgameRegistryEvents {
     		   SoundsHandler.ENTITY_EXAMPLE_DEATH1,
     		   SoundsHandler.ENTITY_EXAMPLE_DEATH2
        );
-    } 
+    }
 	
 	/*
 	//@OnlyIn(Dist.DEDICATED_SERVER)
