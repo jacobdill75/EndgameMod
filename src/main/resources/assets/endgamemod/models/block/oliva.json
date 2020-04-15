@@ -1,0 +1,9 @@
+{
+	"parent": "block/orientable",
+	"textures": {
+		"top": "endgamemod:block/oliva_top",
+		"front": "endgamemod:block/oliva_side",
+		"side": "endgamemod:block/oliva_side",
+		"bottom": "endgamemod:block/end_soil"
+	}
+}

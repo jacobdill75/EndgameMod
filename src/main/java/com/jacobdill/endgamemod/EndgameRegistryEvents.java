@@ -55,6 +55,7 @@ public abstract class EndgameRegistryEvents {
 	    		EndgameItems.RUBY_BLOCK = new BlockItem(EndgameBlocks.RUBY_BLOCK, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS).group(endgameItemGroup)).setRegistryName(EndgameBlocks.RUBY_BLOCK.getRegistryName()),
 	    		EndgameItems.END_SOIL = new BlockItem(EndgameBlocks.END_SOIL, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS).group(endgameItemGroup)).setRegistryName(EndgameBlocks.END_SOIL.getRegistryName()),
 	    		EndgameItems.PURPUREUS = new BlockItem(EndgameBlocks.PURPUREUS, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS).group(endgameItemGroup)).setRegistryName(EndgameBlocks.PURPUREUS.getRegistryName()),
+	    		EndgameItems.OLIVA = new BlockItem(EndgameBlocks.OLIVA, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS).group(endgameItemGroup)).setRegistryName(EndgameBlocks.OLIVA.getRegistryName()),
 	    		EndgameItems.HYDE = new Item(new Item.Properties().group(ItemGroup.MISC).group(endgameItemGroup)).setRegistryName(location("hyde")),
 	   
 	    		EndgameItems.OBSIDIAN_INGOT = new Item(new Item.Properties().group(ItemGroup.MISC)).setRegistryName(location("obsidian_ingot")),
@@ -78,7 +79,8 @@ public abstract class EndgameRegistryEvents {
 				
 				EndgameBlocks.RUBY_BLOCK = new Block(Block.Properties.create(Material.IRON).hardnessAndResistance(5f, 30f).lightValue(0).sound(SoundType.METAL)).setRegistryName(location("ruby_block")),
 				EndgameBlocks.END_SOIL = new Block(Block.Properties.create(Material.EARTH).hardnessAndResistance(0.5f, 2.5f).lightValue(0).sound(SoundType.GROUND)).setRegistryName(location("end_soil")),
-				EndgameBlocks.PURPUREUS = new GrassBlock(Block.Properties.create(Material.ORGANIC).tickRandomly().hardnessAndResistance(4.0F).sound(SoundType.PLANT)).setRegistryName("purpureus")
+				EndgameBlocks.PURPUREUS = new GrassBlock(Block.Properties.create(Material.ORGANIC).tickRandomly().hardnessAndResistance(4.0F).sound(SoundType.PLANT)).setRegistryName("purpureus"),
+				EndgameBlocks.OLIVA = new GrassBlock(Block.Properties.create(Material.ORGANIC).tickRandomly().hardnessAndResistance(4.0F).sound(SoundType.PLANT)).setRegistryName("oliva")
 				
 		);
 		

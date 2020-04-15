@@ -16,11 +16,11 @@ import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
 public class ExampleBiome extends Biome {
 	
-	private static BlockState PURPUREUS = EndgameBlocks.PURPUREUS.getDefaultState(), END_SOIL = EndgameBlocks.END_SOIL.getDefaultState(), OBSIDIAN = Blocks.OBSIDIAN.getDefaultState();
+	private static BlockState OLIVA = EndgameBlocks.OLIVA.getDefaultState(), PURPUREUS = EndgameBlocks.PURPUREUS.getDefaultState(), END_SOIL = EndgameBlocks.END_SOIL.getDefaultState(), OBSIDIAN = Blocks.OBSIDIAN.getDefaultState();
 	
 	public ExampleBiome() {
 		super((new Builder())
-				.surfaceBuilder(new ConfiguredSurfaceBuilder<>(SurfaceBuilder.DEFAULT, new SurfaceBuilderConfig(PURPUREUS, END_SOIL, OBSIDIAN)))
+				.surfaceBuilder(new ConfiguredSurfaceBuilder<>(SurfaceBuilder.DEFAULT, new SurfaceBuilderConfig(OLIVA, END_SOIL, OBSIDIAN)))
 				.precipitation(RainType.NONE)
 				.category(Category.THEEND)
 				.depth(0.1F)
