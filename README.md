@@ -1,4 +1,4 @@
-![Endgame Mod image](https://github.com/jacobdill75/EndgameMod/blob/master/src/main/resources/endgamemod.png | width = 128)
+![Endgame Mod image](https://github.com/jacobdill75/EndgameMod/blob/master/src/main/resources/endgamemod.png | width=128)
 # Endgame Mod
 ## for Minecraft 1.14.4
 
