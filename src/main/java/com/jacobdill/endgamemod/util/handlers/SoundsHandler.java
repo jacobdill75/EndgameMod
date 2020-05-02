@@ -4,8 +4,6 @@ import com.jacobdill.endgamemod.EndgameMod;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.registries.ForgeRegistries;
 
 public class SoundsHandler {
 

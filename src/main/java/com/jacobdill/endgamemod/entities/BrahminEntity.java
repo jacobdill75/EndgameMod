@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.Stream;
 
+import com.jacobdill.endgamemod.init.EndgameBlocks;
 import com.jacobdill.endgamemod.init.EndgameItems;
 import com.jacobdill.endgamemod.util.handlers.SoundsHandler;
 
@@ -13,6 +14,7 @@ import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.goal.BreakBlockGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.PanicGoal;
 import net.minecraft.entity.ai.goal.PrioritizedGoal;
@@ -60,8 +62,9 @@ public class BrahminEntity extends CowEntity{ //CreatureEntity
 	@Override
 	protected void registerGoals(){
 		this.goalSelector.addGoal(0,(new SwimGoal(this)));
-		this.goalSelector.addGoal(2, new TemptGoal(this, 1D, Ingredient.fromItemListStream(Arrays.asList(new Ingredient.SingleItemList(new ItemStack(EndgameItems.RUBY_BLOCK))).stream()), false));
-		this.goalSelector.addGoal(1, new PanicGoal(this, 1D));
+		this.goalSelector.addGoal(1, new PanicGoal(this, 2D));
+		this.goalSelector.addGoal(2, new TemptGoal(this, 1.5D, Ingredient.fromItemListStream(Arrays.asList(new Ingredient.SingleItemList(new ItemStack(EndgameItems.RUBY_BLOCK))).stream()), false));
+		this.goalSelector.addGoal(3, new BreakBlockGoal(EndgameBlocks.RUBY_BLOCK, this, -1D, 64));
 		this.goalSelector.addGoal(3, new RandomWalkingGoal(this, 1.2d));
 		this.goalSelector.addGoal(4, new LookRandomlyGoal(this));
 		
@@ -71,7 +74,6 @@ public class BrahminEntity extends CowEntity{ //CreatureEntity
 	protected void registerAttributes() {
 		super.registerAttributes();
 		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(30.0D);
-		//this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.8d);
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -96,10 +98,8 @@ public class BrahminEntity extends CowEntity{ //CreatureEntity
 	}
 	
 	protected boolean teleportRandomly(double scale) throws Exception {
-		 if (this.goalSelector.getRunningGoals().anyMatch(goal -> (goal.getGoal().getClass() == TemptGoal.class))) {
-			  //Minecraft.getInstance().player.sendChatMessage("Blocked Teleport");
+		 if (this.goalSelector.getRunningGoals().anyMatch(goal -> (goal.getGoal().getClass() == TemptGoal.class || goal.getGoal().getClass() == BreakBlockGoal.class))) {
 			  throw new Exception();
-			  //return false;
 		  }
 	      double d0 = this.posX + scale * (this.rand.nextDouble() - 0.5D) * 64.0D;
 	      double d1 = this.posY + scale * (double)(this.rand.nextInt(64) - 32);
@@ -142,7 +142,6 @@ public class BrahminEntity extends CowEntity{ //CreatureEntity
 	    	try {
 	    	for(int i = 0; i < 64; ++i) {
 	            if (this.teleportRandomly(0.5D)) {
-	               //if(source.getTrueSource() instanceof ClientPlayerEntity) ((ClientPlayerEntity)source.getTrueSource()).sendChatMessage("Teleport");
 	               return true;
 	            }
 	    	}

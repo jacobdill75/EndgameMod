@@ -118,7 +118,7 @@ public abstract class EndgameRegistryEvents {
 	
 	@SubscribeEvent
     public void registerSoundEvents(RegistryEvent.Register<SoundEvent> event) {
-       event.getRegistry().registerAll(
+		event.getRegistry().registerAll(
     		   SoundsHandler.BRAHMIN_MOO,
     		   SoundsHandler.BRAHMIN_HURT,
     		   SoundsHandler.BRAHMIN_DEATH1,

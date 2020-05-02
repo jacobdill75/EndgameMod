@@ -1,26 +1,26 @@
 {
-	"entity.example.moo":
+	"entity.brahmin.moo":
 	{
 		"category": "entity",
-		"subtitle": "entity.example.moo",
-		"sounds": [{"name": "endgamemod:entity/example/moo", "stream": true}]
+		"subtitle": "entity.brahmin.moo",
+		"sounds": [{"name": "endgamemod:entity/brahmin/moo", "stream": true}]
 	},
-	"entity.example.hurt":
+	"entity.brahmin.hurt":
 	{
 		"category": "entity",
-		"subtitle": "entity.example.hurt",
-		"sounds": [{"name": "endgamemod:entity/example/hurt", "stream": true}]
+		"subtitle": "entity.brahmin.hurt",
+		"sounds": [{"name": "endgamemod:entity/brahmin/hurt", "stream": true}]
 	},
-	"entity.example.death1":
+	"entity.brahmin.death1":
 	{
 		"category": "entity",
-		"subtitle": "entity.example.death1",
-		"sounds": [{"name": "endgamemod:entity/example/death1", "stream": true}]
+		"subtitle": "entity.brahmin.death1",
+		"sounds": [{"name": "endgamemod:entity/brahmin/death1", "stream": true}]
 	},
-	"entity.example.death2":
+	"entity.brahmin.death2":
 	{
 		"category": "entity",
-		"subtitle": "entity.example.death2",
-		"sounds": [{"name": "endgamemod:entity/example/death2", "stream": true}]
+		"subtitle": "entity.brahmin.death2",
+		"sounds": [{"name": "endgamemod:entity/brahmin/death2", "stream": true}]
 	}
 }

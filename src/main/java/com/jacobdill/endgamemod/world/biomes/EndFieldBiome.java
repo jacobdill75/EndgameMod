@@ -42,9 +42,9 @@ public class EndFieldBiome extends Biome {
 				)
 		);*/
 		
-		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EndgameEntities.BRAHMIN, 100, 1, 5));
+		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EndgameEntities.BRAHMIN, 90, 1, 5));
 		this.addSpawn(EntityClassification.MONSTER, Biomes.THE_END.getSpawns(EntityClassification.MONSTER).get(0));
-		this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityType.PHANTOM, 30, 1, 2));
+		this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityType.PHANTOM, 10, 1, 2));
 		
 		this.setRegistryName(EndgameRegistryEvents.location("end_field"));
 		
