@@ -1,12 +1,13 @@
 package com.jacobdill.endgamemod.world.biomes;
 
+import com.jacobdill.endgamemod.EndgameRegistryEvents;
 import com.jacobdill.endgamemod.init.EndgameBlocks;
 import com.jacobdill.endgamemod.init.EndgameEntities;
-import com.jacobdill.endgamemod.EndgameRegistryEvents;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityClassification;
+import net.minecraft.entity.EntityType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.biome.DefaultBiomeFeatures;
@@ -43,6 +44,7 @@ public class EndFieldBiome extends Biome {
 		
 		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EndgameEntities.BRAHMIN, 100, 1, 5));
 		this.addSpawn(EntityClassification.MONSTER, Biomes.THE_END.getSpawns(EntityClassification.MONSTER).get(0));
+		this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityType.PHANTOM, 30, 1, 2));
 		
 		this.setRegistryName(EndgameRegistryEvents.location("end_field"));
 		

@@ -9,6 +9,7 @@ import com.jacobdill.endgamemod.init.EndgameItems;
 import com.jacobdill.endgamemod.init.EndgameToolMaterials;
 import com.jacobdill.endgamemod.util.handlers.AnvilHandler;
 import com.jacobdill.endgamemod.util.handlers.DeathHandler;
+import com.jacobdill.endgamemod.util.handlers.LavaResistHandler;
 import com.jacobdill.endgamemod.util.handlers.LootHandler;
 import com.jacobdill.endgamemod.util.handlers.SoundsHandler;
 import com.jacobdill.endgamemod.world.biomes.EndFieldBiome;
@@ -17,6 +18,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.GrassBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.BlockItem;
@@ -29,10 +31,13 @@ import net.minecraft.item.SwordItem;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biomes;
+import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.ForgeRegistries;
 
 //You can use EventBusSubscriber to automatically subscribe events on the contained class (this is subscribing to the MOD
 // Event bus for receiving Registry Events)
@@ -46,6 +51,7 @@ public abstract class EndgameRegistryEvents {
 		new AnvilHandler();
 		new LootHandler();
 		new DeathHandler();
+		new LavaResistHandler();
 	}
 	
 	@SubscribeEvent
@@ -103,7 +109,10 @@ public abstract class EndgameRegistryEvents {
 		biomeRegistryEvent.getRegistry().registerAll(
 				EndgameBiomes.END_FIELD = new EndFieldBiome()
 		);
-		
+		for(Biome biome : ForgeRegistries.BIOMES) {
+			if (biome == Biomes.END_BARRENS || biome == Biomes.SMALL_END_ISLANDS || biome == Biomes.END_MIDLANDS)
+				biome.getSpawns(EntityClassification.MONSTER).add(new SpawnListEntry(EntityType.PHANTOM, 20, 1, 3));
+		}
 		EndgameBiomes.registerBiomes();
 	}
 	
