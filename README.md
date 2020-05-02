@@ -1,20 +1,20 @@
-#Endgame Mod
+# Endgame Mod
 ## for Minecraft 1.14.4
 
 A mod to make the End dimension a little more interesting/sensible. Feature sinclude:
 
-*Vanila Adjustments:
+* Vanila Adjustments:
 	* Phantoms Spawn in the End
 	* Totems of Undying save you from the void
 
-*New features:
+* New features:
 	* Obsidian ingots can be found in End City Loot. This can be used to craft obsidian tools, a median between iron and diamon which does not burn in lava!
 	* A new end cow -- Brahmin -- occupy the End Dimension. These creatures drop their valuable Hyde, which can be used to heal elyctra. They are difficult to hunt, however, as they're movement resembles that of the endermen.
 	* Rubies can be found in Stronghold Corridor Chests, and can be crafted into a block. This block appears to be attractive to Brahmin...
 	* A new world type - Endgame World - features a WIP dimension called the End Field, which spawns many Brahmin. However, this biome is not featured in the normal world.
 	* To occupy this biome, End grass and dirt blocks, Purpueus, and Oliva, have been added, but currently serve for aesthetic purposes.
 
-##Forge README.txt:
+## Forge README.txt:
 
 -------------------------------------------
 Source installation information for modders
