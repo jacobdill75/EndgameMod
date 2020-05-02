@@ -16,13 +16,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.jacobdill.endgamemod.init.EndgameBlocks;
-import com.jacobdill.endgamemod.world.biomes.ExampleBiome;
+import com.jacobdill.endgamemod.world.biomes.EndFieldBiome;
 import com.jacobdill.endgamemod.init.EndgameEntities;
 import com.jacobdill.endgamemod.init.EndgameToolMaterials;
-import com.jacobdill.endgamemod.world.ExampleWorldType;
+import com.jacobdill.endgamemod.world.EndgameWorldType;
 import com.jacobdill.endgamemod.init.EndgameBiomes;
 import com.jacobdill.endgamemod.init.EndgameItems;
-import com.jacobdill.endgamemod.renders.ExampleRenderRegistry;
+import com.jacobdill.endgamemod.renders.EndgameRenderRegistry;
 
 import java.util.stream.Collectors;
 
@@ -34,7 +34,7 @@ public class EndgameMod
     public static final Logger LOGGER = LogManager.getLogger();
     
     public static final ItemGroup endgameItemGroup = new EndgameItemGroup();
-    public static final WorldType ENDGAME_TYPE = new ExampleWorldType();
+    public static final WorldType ENDGAME_TYPE = new EndgameWorldType();
     
     //modid 
     public static final String modid = "endgamemod";
@@ -66,7 +66,7 @@ public class EndgameMod
     private void doClientStuff(final FMLClientSetupEvent event) {
         // do something that can only be done on the client
     	
-    	ExampleRenderRegistry.registryEntityrenders();
+    	EndgameRenderRegistry.registryEntityrenders();
     	
         //LOGGER.info("Got game settings {}", event.getMinecraftSupplier().get().gameSettings);
     }

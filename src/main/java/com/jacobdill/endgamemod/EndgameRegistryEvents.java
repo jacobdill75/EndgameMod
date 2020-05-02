@@ -8,9 +8,10 @@ import com.jacobdill.endgamemod.init.EndgameEntities;
 import com.jacobdill.endgamemod.init.EndgameItems;
 import com.jacobdill.endgamemod.init.EndgameToolMaterials;
 import com.jacobdill.endgamemod.util.handlers.AnvilHandler;
+import com.jacobdill.endgamemod.util.handlers.DeathHandler;
+import com.jacobdill.endgamemod.util.handlers.LootHandler;
 import com.jacobdill.endgamemod.util.handlers.SoundsHandler;
-//import com.jacobdill.endgamemod.util.handlers.SoundsHandler;
-import com.jacobdill.endgamemod.world.biomes.ExampleBiome;
+import com.jacobdill.endgamemod.world.biomes.EndFieldBiome;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.GrassBlock;
@@ -25,10 +26,10 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.PickaxeItem;
 import net.minecraft.item.ShovelItem;
 import net.minecraft.item.SwordItem;
-import net.minecraft.item.Item.Properties;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.biome.Biome;
+import net.minecraftforge.common.ToolType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -43,11 +44,13 @@ public abstract class EndgameRegistryEvents {
 	
 	static {
 		new AnvilHandler();
+		new LootHandler();
+		new DeathHandler();
 	}
 	
 	@SubscribeEvent
     public static void onItemRegistry(final RegistryEvent.Register<Item> itemRegistryEvent) {
-        // register a new item here
+        
 		
 		itemRegistryEvent.getRegistry().registerAll(
 				
@@ -77,10 +80,10 @@ public abstract class EndgameRegistryEvents {
 		
 		blockRegistryEvent.getRegistry().registerAll(
 				
-				EndgameBlocks.RUBY_BLOCK = new Block(Block.Properties.create(Material.IRON).hardnessAndResistance(5f, 30f).lightValue(0).sound(SoundType.METAL)).setRegistryName(location("ruby_block")),
-				EndgameBlocks.END_SOIL = new Block(Block.Properties.create(Material.EARTH).hardnessAndResistance(0.5f, 2.5f).lightValue(0).sound(SoundType.GROUND)).setRegistryName(location("end_soil")),
-				EndgameBlocks.PURPUREUS = new GrassBlock(Block.Properties.create(Material.ORGANIC).tickRandomly().hardnessAndResistance(4.0F).sound(SoundType.PLANT)).setRegistryName("purpureus"),
-				EndgameBlocks.OLIVA = new GrassBlock(Block.Properties.create(Material.ORGANIC).tickRandomly().hardnessAndResistance(4.0F).sound(SoundType.PLANT)).setRegistryName("oliva")
+				EndgameBlocks.RUBY_BLOCK = new Block(Block.Properties.create(Material.IRON).hardnessAndResistance(5f, 30f).harvestTool(ToolType.PICKAXE).lightValue(0).sound(SoundType.METAL)).setRegistryName(location("ruby_block")),
+				EndgameBlocks.END_SOIL = new Block(Block.Properties.create(Material.EARTH).hardnessAndResistance(0.5f).harvestTool(ToolType.SHOVEL).lightValue(0).sound(SoundType.GROUND)).setRegistryName(location("end_soil")),
+				EndgameBlocks.PURPUREUS = new GrassBlock(Block.Properties.create(Material.ORGANIC).tickRandomly().hardnessAndResistance(0.5F).harvestTool(ToolType.SHOVEL).sound(SoundType.PLANT)).setRegistryName("purpureus"),
+				EndgameBlocks.OLIVA = new GrassBlock(Block.Properties.create(Material.ORGANIC).tickRandomly().hardnessAndResistance(0.5F).harvestTool(ToolType.SHOVEL).sound(SoundType.PLANT)).setRegistryName("oliva")
 				
 		);
 		
@@ -89,7 +92,7 @@ public abstract class EndgameRegistryEvents {
 	@SubscribeEvent
 	public static void onEntitiesRegistry(final RegistryEvent.Register<EntityType<?>> entityRegistryEvent) {
 		entityRegistryEvent.getRegistry().registerAll(
-				EndgameEntities.EXAMPLE_ENTITY
+				EndgameEntities.BRAHMIN
 		);
 		
 		EndgameEntities.registerEntityWorldSpawns();
@@ -98,7 +101,7 @@ public abstract class EndgameRegistryEvents {
 	@SubscribeEvent
 	public static void onBiomesRegistry(final RegistryEvent.Register<Biome> biomeRegistryEvent) {
 		biomeRegistryEvent.getRegistry().registerAll(
-				EndgameBiomes.EXAMPLE_BIOME = new ExampleBiome()
+				EndgameBiomes.END_FIELD = new EndFieldBiome()
 		);
 		
 		EndgameBiomes.registerBiomes();
@@ -107,10 +110,10 @@ public abstract class EndgameRegistryEvents {
 	@SubscribeEvent
     public void registerSoundEvents(RegistryEvent.Register<SoundEvent> event) {
        event.getRegistry().registerAll(
-    		   SoundsHandler.ENTITY_EXAMPLE_MOO,
-    		   SoundsHandler.ENTITY_EXAMPLE_HURT,
-    		   SoundsHandler.ENTITY_EXAMPLE_DEATH1,
-    		   SoundsHandler.ENTITY_EXAMPLE_DEATH2
+    		   SoundsHandler.BRAHMIN_MOO,
+    		   SoundsHandler.BRAHMIN_HURT,
+    		   SoundsHandler.BRAHMIN_DEATH1,
+    		   SoundsHandler.BRAHMIN_DEATH2
        );
     }
 	

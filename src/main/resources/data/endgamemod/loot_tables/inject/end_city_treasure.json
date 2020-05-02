@@ -1,0 +1,18 @@
+{
+  "pools": [{
+    "name": "main",
+    "rolls": 1,
+    "entries": [
+      {
+        "type": "item",
+        "name": "endgamemod:obsidian_ingot",
+        "weight": 30,
+        "functions": [{ "function": "set_count", "count": { "min": 1, "max": 3 } }]
+      },
+      {
+        "type": "empty",
+        "weight": 70
+      }
+    ]
+  }]
+}

@@ -14,11 +14,11 @@ import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
-public class ExampleBiome extends Biome {
+public class EndFieldBiome extends Biome {
 	
 	private static BlockState OLIVA = EndgameBlocks.OLIVA.getDefaultState(), PURPUREUS = EndgameBlocks.PURPUREUS.getDefaultState(), END_SOIL = EndgameBlocks.END_SOIL.getDefaultState(), OBSIDIAN = Blocks.OBSIDIAN.getDefaultState();
 	
-	public ExampleBiome() {
+	public EndFieldBiome() {
 		super((new Builder())
 				.surfaceBuilder(new ConfiguredSurfaceBuilder<>(SurfaceBuilder.DEFAULT, new SurfaceBuilderConfig(OLIVA, END_SOIL, OBSIDIAN)))
 				.precipitation(RainType.NONE)
@@ -41,10 +41,10 @@ public class ExampleBiome extends Biome {
 				)
 		);*/
 		
-		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EndgameEntities.EXAMPLE_ENTITY, 100, 1, 5));
+		this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EndgameEntities.BRAHMIN, 100, 1, 5));
 		this.addSpawn(EntityClassification.MONSTER, Biomes.THE_END.getSpawns(EntityClassification.MONSTER).get(0));
 		
-		this.setRegistryName(EndgameRegistryEvents.location("example_biome"));
+		this.setRegistryName(EndgameRegistryEvents.location("end_field"));
 		
 	}
 }

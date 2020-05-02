@@ -6,7 +6,7 @@ import net.minecraft.item.crafting.Ingredient;
 
 public enum EndgameToolMaterials implements IItemTier{
 	
-	obsidian(8f, 10f, 640, 3, 8, EndgameItems.OBSIDIAN_INGOT);
+	obsidian(3f, 10f, 640, 3, 12, EndgameItems.OBSIDIAN_INGOT);
 	
 	private float attackDamage, efficiency;
 	private int durability, harvestLevel, enchantability;

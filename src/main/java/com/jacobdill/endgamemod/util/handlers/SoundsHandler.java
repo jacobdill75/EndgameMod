@@ -9,10 +9,10 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class SoundsHandler {
 
-	public static SoundEvent ENTITY_EXAMPLE_MOO = SoundsHandler.initSound("entity.example.moo"),
-							 ENTITY_EXAMPLE_HURT = SoundsHandler.initSound("entity.example.hurt"),
-							 ENTITY_EXAMPLE_DEATH1 = SoundsHandler.initSound("entity.example.death1"),
-							 ENTITY_EXAMPLE_DEATH2 = SoundsHandler.initSound("entity.example.death2");
+	public static SoundEvent BRAHMIN_MOO = SoundsHandler.initSound("entity.brahmin.moo"),
+							 BRAHMIN_HURT = SoundsHandler.initSound("entity.brahmin.hurt"),
+							 BRAHMIN_DEATH1 = SoundsHandler.initSound("entity.brahmin.death1"),
+							 BRAHMIN_DEATH2 = SoundsHandler.initSound("entity.brahmin.death2");
 	
 	public static SoundEvent initSound(String name) {
 		ResourceLocation location = new ResourceLocation(EndgameMod.modid, name);

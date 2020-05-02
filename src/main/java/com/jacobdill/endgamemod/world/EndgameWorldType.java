@@ -3,7 +3,7 @@ package com.jacobdill.endgamemod.world;
 import com.google.common.collect.Sets;
 import com.jacobdill.endgamemod.init.EndgameBiomes;
 import com.jacobdill.endgamemod.init.EndgameBlocks;
-import com.jacobdill.endgamemod.world.biomes.ExampleBiome;
+import com.jacobdill.endgamemod.world.biomes.EndFieldBiome;
 
 import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
@@ -37,9 +37,9 @@ import net.minecraft.world.gen.EndGenerationSettings;
 import net.minecraft.world.gen.SimplexNoiseGenerator;
 import net.minecraft.world.gen.feature.structure.Structure;
 
-public class ExampleWorldType extends WorldType{
+public class EndgameWorldType extends WorldType{
 
-	public ExampleWorldType() {
+	public EndgameWorldType() {
 		super("endgamemod");
 	}
 	
@@ -65,7 +65,7 @@ public class ExampleWorldType extends WorldType{
 
 		private final SimplexNoiseGenerator generator;
 		private final SharedSeedRandom random;
-		private final Biome[] field_205009_d = new Biome[]{Biomes.THE_END, Biomes.END_HIGHLANDS, Biomes.END_MIDLANDS, Biomes.SMALL_END_ISLANDS, Biomes.END_BARRENS, EndgameBiomes.EXAMPLE_BIOME};
+		private final Biome[] field_205009_d = new Biome[]{Biomes.THE_END, Biomes.END_HIGHLANDS, Biomes.END_MIDLANDS, Biomes.SMALL_END_ISLANDS, Biomes.END_BARRENS, EndgameBiomes.END_FIELD};
 		
 		public ExampleBiomeProvider(EndBiomeProviderSettings p_i48970_1_) {
 			super(p_i48970_1_);
@@ -77,7 +77,7 @@ public class ExampleWorldType extends WorldType{
 		@Override
 		public List<Biome> getBiomesToSpawnIn() {
 			List<Biome> biomes = new ArrayList<Biome>();//super.getBiomesToSpawnIn();
-			biomes.add(new ExampleBiome());
+			biomes.add(new EndFieldBiome());
 			return biomes;
 		}
 		
@@ -96,8 +96,7 @@ public class ExampleWorldType extends WorldType{
 				/*float lvt_5_1_ = this.func_222365_c(lvt_3_1_ * 2 + 1, lvt_4_1_ * 2 + 1);
 				if (lvt_5_1_ > 40.0F)
 				{
-					//return Biomes.END_HIGHLANDS;
-					return BOPBiomes.ethereal_forest.get();
+					return Biomes.END_HIGHLANDS;
 				}
 				else if (lvt_5_1_ >= 0.0F)
 				{
@@ -107,7 +106,7 @@ public class ExampleWorldType extends WorldType{
 				{
 					return lvt_5_1_ < -20.0F ? Biomes.SMALL_END_ISLANDS : Biomes.END_BARRENS;
 				}*/
-				return EndgameBiomes.EXAMPLE_BIOME;
+				return EndgameBiomes.END_FIELD;
 			}
 		}
 

@@ -18,31 +18,12 @@
 					],
 					"name": "endgamemod:hyde",
 					"expand": true,
-					"weight": 96
+					"weight": 80
 				},
 				
 				{
-					"type": "minecraft:item",
-					"functions":
-					[
-						{
-							"function": "minecraft:set_damage",
-							"damage": 0.01
-						},
-						
-						{
-							"function": "minecraft:set_nbt",
-							"tag": "{Enchantments:[{id:sharpness,lvl:10}]}"
-						},
-						
-						{
-							"function": "minecraft:set_name",
-							"name": "L'Edecael"
-						}
-					],
-					
-					"name": "endgamemod:obsidian_sword",
-					"weight": 4
+					"type": "minecraft:empty",
+					"weight": 20
 				}
 			]
 		}

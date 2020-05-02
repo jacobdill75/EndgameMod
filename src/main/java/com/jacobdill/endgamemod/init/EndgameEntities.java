@@ -1,6 +1,6 @@
 package com.jacobdill.endgamemod.init;
 
-import com.jacobdill.endgamemod.entities.ExampleEntity;
+import com.jacobdill.endgamemod.entities.BrahminEntity;
 import com.jacobdill.endgamemod.EndgameRegistryEvents;
 import com.jacobdill.endgamemod.EndgameMod;
 
@@ -15,16 +15,16 @@ import net.minecraft.world.biome.Biomes;
 
 public class EndgameEntities {
 
-	public static EntityType<?> EXAMPLE_ENTITY = EntityType.Builder.create(ExampleEntity::new, EntityClassification.CREATURE).build(EndgameMod.modid + ":example_entity").setRegistryName(EndgameRegistryEvents.location("example_entity"));
+	public static EntityType<?> BRAHMIN = EntityType.Builder.create(BrahminEntity::new, EntityClassification.CREATURE).build(EndgameMod.modid + ":brahmin").setRegistryName(EndgameRegistryEvents.location("brahmin"));
 	
 	public static void registryEntitySpawnEggs(final RegistryEvent.Register<Item> event) {
 		event.getRegistry().registerAll(
-				EndgameItems.EXAMPLE_ENTITY_EGG = registerEntitySpawnEgg(EXAMPLE_ENTITY, 0x2b1c36, 0x0, "example_entity_egg")
+				EndgameItems.BRAHMIN_EGG = registerEntitySpawnEgg(BRAHMIN, 0x2b1c36, 0x0, "brahmin_egg")
 		);
 	}
 	
 	public static void registerEntityWorldSpawns() {
-		registerEntityWorldSpawn(EXAMPLE_ENTITY, Biomes.PLAINS, Biomes.BEACH, Biomes.BIRCH_FOREST, Biomes.DESERT, Biomes.FOREST);
+		registerEntityWorldSpawn(BRAHMIN, EndgameBiomes.END_FIELD, Biomes.END_HIGHLANDS);
 	}
 	
 	private static SpawnEggItem registerEntitySpawnEgg(EntityType<?> type, int color1, int color2, String name) {

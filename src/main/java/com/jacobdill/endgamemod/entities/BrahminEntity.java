@@ -1,18 +1,29 @@
 package com.jacobdill.endgamemod.entities;
 
+import java.util.Arrays;
+import java.util.Optional;
+import java.util.stream.Stream;
+
+import com.jacobdill.endgamemod.init.EndgameItems;
 import com.jacobdill.endgamemod.util.handlers.SoundsHandler;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.entity.AgeableEntity;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.PanicGoal;
+import net.minecraft.entity.ai.goal.PrioritizedGoal;
 import net.minecraft.entity.ai.goal.RandomWalkingGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
+import net.minecraft.entity.ai.goal.TemptGoal;
 import net.minecraft.entity.passive.CowEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.item.crafting.Ingredient.IItemList;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Direction;
@@ -22,14 +33,14 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class ExampleEntity extends CowEntity{ //CreatureEntity
+public class BrahminEntity extends CowEntity{ //CreatureEntity
 
 	/*@SuppressWarnings("unchecked")
 	protected ExampleEntity(EntityType<? extends CreatureEntity> type, World worldIn) {
 		super((EntityType<? extends CreatureEntity>) ExampleEntities.EXAMPLE_ENTITY,worldIn); //extends CreatureEntity
 	}*/
 	
-	public ExampleEntity(EntityType<? extends CowEntity> type, World worldIn) {
+	public BrahminEntity(EntityType<? extends CowEntity> type, World worldIn) {
 		super(type, worldIn);
 	}
 		
@@ -42,18 +53,19 @@ public class ExampleEntity extends CowEntity{ //CreatureEntity
 	      }
 		super.livingTick();
 		if(this.rand.nextInt(240) == 10)
-			this.teleportRandomly(0.25D);
+			try{this.teleportRandomly(0.25D);}catch(Exception e) {}
 		
 	}
-	/*
+	
 	@Override
 	protected void registerGoals(){
 		this.goalSelector.addGoal(0,(new SwimGoal(this)));
+		this.goalSelector.addGoal(2, new TemptGoal(this, 1D, Ingredient.fromItemListStream(Arrays.asList(new Ingredient.SingleItemList(new ItemStack(EndgameItems.RUBY_BLOCK))).stream()), false));
 		this.goalSelector.addGoal(1, new PanicGoal(this, 1D));
-		this.goalSelector.addGoal(2, new RandomWalkingGoal(this, 1.2d));
-		this.goalSelector.addGoal(3, new LookRandomlyGoal(this));
+		this.goalSelector.addGoal(3, new RandomWalkingGoal(this, 1.2d));
+		this.goalSelector.addGoal(4, new LookRandomlyGoal(this));
 		
-	}*/
+	}
 	
 	@Override
 	protected void registerAttributes() {
@@ -65,25 +77,30 @@ public class ExampleEntity extends CowEntity{ //CreatureEntity
 	@SuppressWarnings("unchecked")
 	@Override
 	public CowEntity createChild(AgeableEntity ageable) {
-		return new ExampleEntity((EntityType<? extends CowEntity>)super.getType(), super.world);
+		return new BrahminEntity((EntityType<? extends CowEntity>)super.getType(), super.world);
 	}
 	
 	@Override
 	protected SoundEvent getAmbientSound() {
-		return SoundsHandler.ENTITY_EXAMPLE_MOO;
+		return SoundsHandler.BRAHMIN_MOO;
 	}
 	
 	@Override
 	protected SoundEvent getHurtSound(DamageSource source) {
-		return SoundsHandler.ENTITY_EXAMPLE_HURT;
+		return SoundsHandler.BRAHMIN_HURT;
 	}
 	
 	@Override
 	protected SoundEvent getDeathSound() {
-		return this.rand.nextInt(10) < 5 ? SoundsHandler.ENTITY_EXAMPLE_DEATH1 : SoundsHandler.ENTITY_EXAMPLE_DEATH2;
+		return this.rand.nextInt(10) < 5 ? SoundsHandler.BRAHMIN_DEATH1 : SoundsHandler.BRAHMIN_DEATH2;
 	}
 	
-	protected boolean teleportRandomly(double scale) {
+	protected boolean teleportRandomly(double scale) throws Exception {
+		 if (this.goalSelector.getRunningGoals().anyMatch(goal -> (goal.getGoal().getClass() == TemptGoal.class))) {
+			  //Minecraft.getInstance().player.sendChatMessage("Blocked Teleport");
+			  throw new Exception();
+			  //return false;
+		  }
 	      double d0 = this.posX + scale * (this.rand.nextDouble() - 0.5D) * 64.0D;
 	      double d1 = this.posY + scale * (double)(this.rand.nextInt(64) - 32);
 	      double d2 = this.posZ + scale * (this.rand.nextDouble() - 0.5D) * 64.0D;
@@ -122,12 +139,14 @@ public class ExampleEntity extends CowEntity{ //CreatureEntity
 	         flag = super.attackEntityFrom(source, amount);
 	         
 	    if (this.getHealth() - amount > 0) {
-	    	if(source.getTrueSource() instanceof ClientPlayerEntity) ((ClientPlayerEntity)source.getTrueSource()).sendChatMessage("Teleport");
+	    	try {
 	    	for(int i = 0; i < 64; ++i) {
 	            if (this.teleportRandomly(0.5D)) {
+	               //if(source.getTrueSource() instanceof ClientPlayerEntity) ((ClientPlayerEntity)source.getTrueSource()).sendChatMessage("Teleport");
 	               return true;
 	            }
 	    	}
+	    	}catch(Exception e) {return flag;}
 	    }
 	    return flag;
 	}

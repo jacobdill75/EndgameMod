@@ -1,14 +1,16 @@
 package com.jacobdill.endgamemod.util.handlers;
 
+import com.jacobdill.endgamemod.EndgameMod;
 import com.jacobdill.endgamemod.init.EndgameItems;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.AnvilUpdateEvent;
-import net.minecraftforge.event.entity.player.AnvilRepairEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
+@Mod.EventBusSubscriber(modid = EndgameMod.modid)
 public class AnvilHandler {
 
 	

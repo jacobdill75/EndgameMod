@@ -1,0 +1,18 @@
+{
+  "pools": [{
+    "name": "main",
+    "rolls": 1,
+    "entries": [
+      {
+        "type": "item",
+        "name": "endgamemod:ruby_item",
+        "weight": 8,
+        "functions": [{ "function": "set_count", "count": { "min": 1, "max": 2 } }]
+      },
+      {
+        "type": "empty",
+        "weight": 92
+      }
+    ]
+  }]
+}

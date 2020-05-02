@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#",
+        "#",
+        "/"
+    ],
+    "key": {
+        "#": {
+            "item": "endgamemod:obsidian_ingot"
+        },
+        "/": {
+            "item": "minecraft:blaze_rod"
+        }
+    },
+    "result": {
+        "item": "endgamemod:obsidian_sword"
+    }
+}
