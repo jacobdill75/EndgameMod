@@ -111,7 +111,7 @@ public abstract class EndgameRegistryEvents {
 		);
 		for(Biome biome : ForgeRegistries.BIOMES) {
 			if (biome == Biomes.END_BARRENS || biome == Biomes.SMALL_END_ISLANDS || biome == Biomes.END_MIDLANDS)
-				biome.getSpawns(EntityClassification.MONSTER).add(new SpawnListEntry(EntityType.PHANTOM, 20, 1, 3));
+				biome.getSpawns(EntityClassification.MONSTER).add(new SpawnListEntry(EntityType.PHANTOM, 20, 1, 2));
 		}
 		EndgameBiomes.registerBiomes();
 	}
