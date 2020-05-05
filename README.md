@@ -1,9 +1,9 @@
 <img src="https://github.com/jacobdill75/EndgameMod/blob/master/src/main/resources/endgamemod.png" alt="" data-canonical-src="https://github.com/jacobdill75/EndgameMod/blob/master/src/main/resources/endgamemod.png" width="128" height="128" />
 
 # Endgame Mod
-## for Minecraft 1.14.4
+## For Minecraft 1.14.4
 
-A mod to make the End dimension a little more interesting/sensible. Feature sinclude:
+A mod to make the End dimension a little more interesting (Showcase: https://youtu.be/DrouwrbBgJY). Features include:
 
 * Vanila Adjustments:
 	* Phantoms Spawn in the End
